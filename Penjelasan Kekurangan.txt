@@ -1,0 +1,15 @@
+- Send OTP setelah Registrasi --> login registrasi ini aku nyimpen datanya 2x pake firebase buat login multi user, sama ke database biasa mysql
+
+- setelah login ada profile user buat nampilin datanya user yang login, yang di karyawan cuma nampil aja, yang di user pemilik bisa edit
+
+- halaman statistik penggunaan pakan, bebas mau pake model chart yang mana 
+
+- crud catatan harian di 2 user karyawan sama pemilik, ketika uda insert periode ternak, nah nanti baru bisa insert catatan harian, sesuai periodenya, nanti diinputin di kandang mana yang dipake(kandang yang muncul yang kapastiasnya > jumlah bibit), input kode pakan, dan jumlah pakan harian. Status vaksin dipake radio button aja sudah vaksin sama belum vaksin
+
+terus dicatatan harian ada button panen ketika button diklik nanti datanya ke insert ke tabel panen, berat hasil diambil dari data berat terakhir catatan harian, jumlah hasil dari seluruh data jumlah mati di periode yang sama dikurangi jumlah bibit
+
+ketikan input jumlah pakan harian, stok pakan di tabel pakan berkurang.
+
+
+link figma gambaran aplikasi :
+https://www.figma.com/file/TiM2bTT2u3CPglG1CNv10z/Ternak!n?node-id=0%3A1
