@@ -8,8 +8,9 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         $status = 1;
+        $id_pegawai = $_POST['password'];
 
-        $insert = "INSERT INTO pegawai(id_jabatan, nama, no_telp, email, password, status) VALUES('$id_jabatan', '$nama', '$noTelp', '$email', '$password', '$status') ";
+        $insert = "INSERT INTO pegawai(id_pegawai, id_jabatan, nama, no_telp, email, password, status) VALUES('$id_pegawai','$id_jabatan', '$nama', '$noTelp', '$email', '$password', '$status') ";
         
         if ($id_jabatan != "" && $nama != "" && $noTelp != "" && $email != "" && $password != "" && $status != "") {
 

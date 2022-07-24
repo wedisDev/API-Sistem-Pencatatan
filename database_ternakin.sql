@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Jul 2022 pada 16.27
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 8.1.6
+-- Generation Time: Jul 24, 2022 at 12:19 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,283 +24,60 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `catatan_harian`
+-- Table structure for table `catatan_harian`
 --
 
 CREATE TABLE `catatan_harian` (
   `ID_PERIODE` int(11) NOT NULL,
-  `ID_KANDANG` int(11) NOT NULL,
+  `ID_KANDANG` varchar(20) NOT NULL,
   `ID_CATATAN` int(11) NOT NULL,
-  `ID_PEGAWAI` int(11) NOT NULL,
+  `ID_PEGAWAI` varchar(20) NOT NULL,
   `KODE_PAKAN` varchar(20) NOT NULL,
   `JUMLAH_KALING` int(11) DEFAULT NULL,
   `JUMLAH_MATI` int(11) DEFAULT NULL,
-  `TANGGAL_CATATAN_HARIAN` date DEFAULT NULL,
   `BERAT_BADAN` float DEFAULT NULL,
   `STATUS_VAKSIN` int(11) DEFAULT NULL,
   `PAKAN_HARIAN` int(11) DEFAULT NULL,
-  `ID_PANEN` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `jabatan`
---
-
-CREATE TABLE `jabatan` (
-  `ID_JABATAN` int(11) NOT NULL,
-  `NAMA_JABATAN` varchar(50) DEFAULT NULL
+  `ID_PANEN` int(11) NOT NULL,
+  `SISA_AYAM` varchar(20) NOT NULL,
+  `UMUR_AYAM` varchar(20) NOT NULL,
+  `JUMLAH_PAKAN` varchar(20) NOT NULL,
+  `TANGGAL_CATATAN_HARIAN` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jabatan`
+-- Dumping data for table `catatan_harian`
 --
 
-INSERT INTO `jabatan` (`ID_JABATAN`, `NAMA_JABATAN`) VALUES
-(1, 'Pemilik'),
-(2, 'Pegawai');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `kandang`
---
-
-CREATE TABLE `kandang` (
-  `ID_KANDANG` int(11) NOT NULL,
-  `NAMA_KANDANG` varchar(50) DEFAULT NULL,
-  `KAPASITAS` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `kandang`
---
-
-INSERT INTO `kandang` (`ID_KANDANG`, `NAMA_KANDANG`, `KAPASITAS`) VALUES
-(11, 'Kandang Barat A1', 1000),
-(14, 'Kandang Barat B1', 100);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pakan`
---
-
-CREATE TABLE `pakan` (
-  `KODE_PAKAN` varchar(20) NOT NULL,
-  `NAMA_PAKAN` varchar(50) DEFAULT NULL,
-  `STOK_PAKAN` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `pakan`
---
-
-INSERT INTO `pakan` (`KODE_PAKAN`, `NAMA_PAKAN`, `STOK_PAKAN`) VALUES
-('BR-08', 'BR-08', 10),
-('FB-101', 'FB-101', 10),
-('NH-810', 'NH-810', 10),
-('NH-811', 'NH-811', 10);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `panen`
---
-
-CREATE TABLE `panen` (
-  `TANGGAL_PANEN` date DEFAULT NULL,
-  `BERAT_HASIL` float DEFAULT NULL,
-  `JUMLAH_HASIL` int(11) DEFAULT NULL,
-  `ID_PANEN` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pegawai`
---
-
-CREATE TABLE `pegawai` (
-  `ID_PEGAWAI` int(11) NOT NULL,
-  `ID_JABATAN` int(11) NOT NULL,
-  `NAMA` varchar(50) DEFAULT NULL,
-  `NO_TELP` varchar(12) DEFAULT NULL,
-  `EMAIL` varchar(50) DEFAULT NULL,
-  `PASSWORD` varchar(8) DEFAULT NULL,
-  `STATUS` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `pegawai`
---
-
-INSERT INTO `pegawai` (`ID_PEGAWAI`, `ID_JABATAN`, `NAMA`, `NO_TELP`, `EMAIL`, `PASSWORD`, `STATUS`) VALUES
-(1, 1, 'Dhevani Dafa', '081936632163', 'dhevanidafa07@gmail.com', '12345678', 1),
-(2, 2, 'Ryan Ardito', '081936632163', 'ryanardito14@gmail.com', '12345678', 1);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pencatatan_pakan_masuk`
---
-
-CREATE TABLE `pencatatan_pakan_masuk` (
-  `ID_PPM` int(11) NOT NULL,
-  `KODE_PAKAN` varchar(20) NOT NULL,
-  `TANGGAL_MASUK` date DEFAULT NULL,
-  `PAKAN_MASUK` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `pencatatan_pakan_masuk`
---
-
-INSERT INTO `pencatatan_pakan_masuk` (`ID_PPM`, `KODE_PAKAN`, `TANGGAL_MASUK`, `PAKAN_MASUK`) VALUES
-(5, 'BR-08', '2022-07-17', 10),
-(6, 'FB-101', '2022-07-17', 10),
-(7, 'NH-810', '2022-07-17', 10),
-(8, 'NH-811', '2022-07-17', 10);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `periode_ternak`
---
-
-CREATE TABLE `periode_ternak` (
-  `ID_PERIODE` int(11) NOT NULL,
-  `JUMLAH_BIBIT` int(11) DEFAULT NULL,
-  `TANGGAL_DATANG` date DEFAULT NULL,
-  `STATUS_PERIODE` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `periode_ternak`
---
-
-INSERT INTO `periode_ternak` (`ID_PERIODE`, `JUMLAH_BIBIT`, `TANGGAL_DATANG`, `STATUS_PERIODE`) VALUES
-(1, 100, '2022-07-17', NULL);
+INSERT INTO `catatan_harian` (`ID_PERIODE`, `ID_KANDANG`, `ID_CATATAN`, `ID_PEGAWAI`, `KODE_PAKAN`, `JUMLAH_KALING`, `JUMLAH_MATI`, `BERAT_BADAN`, `STATUS_VAKSIN`, `PAKAN_HARIAN`, `ID_PANEN`, `SISA_AYAM`, `UMUR_AYAM`, `JUMLAH_PAKAN`, `TANGGAL_CATATAN_HARIAN`) VALUES
+(1, '', 1, '', 'BR-08', 1, 2, 123, 1, 1, 1, '20', '1', '300', ''),
+(1, '', 2, '', 'BR-08', 2, 1, 2, 1, 2, 3, '4', '1', '1', '1'),
+(1, '', 3, '', 'BR-08', 2, 1, 2, 1, 2, 3, '4', '1', '1', '1'),
+(1, '', 4, '', 'BR-08', 2, 1, 2, 1, 2, 3, '4', '1', '1', '1'),
+(1, '', 5, '', 'BRoo', 1, 1, 7, 0, 0, 1, '3', '6', '7', 'Sunday, 24 July 2022'),
+(1, '11', 6, 'INFlMGQfuYhF6Fz4mMC6', 'BrI', 6, 3, 3, 0, 0, 1, '200', '1', '60', 'Sunday, 24 July 2022'),
+(1, '11', 7, 'INFlMGQfuYhF6Fz4mMC6', 'hh', 9, 9, 500, 0, 0, 1, '6', '33', '6', 'Sunday, 24 July 2022'),
+(1, '11', 8, 'INFlMGQfuYhF6Fz4mMC6', 'h', 6, 6, 3, 0, 0, 1, '6', '6', '6', 'Sunday, 24 July 2022');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `catatan_harian`
+-- Indexes for table `catatan_harian`
 --
 ALTER TABLE `catatan_harian`
-  ADD PRIMARY KEY (`ID_PERIODE`,`ID_KANDANG`,`ID_CATATAN`,`ID_PANEN`),
-  ADD KEY `FK_CATATAN__MENGHASIL_PANEN` (`ID_PANEN`),
-  ADD KEY `FK_CATATAN__DILAKUKAN_KANDANG` (`ID_KANDANG`),
-  ADD KEY `FK_CATATAN__MENGELOLA_PEGAWAI` (`ID_PEGAWAI`),
-  ADD KEY `FK_CATATAN__PAKAN_HAR_PAKAN` (`KODE_PAKAN`);
+  ADD PRIMARY KEY (`ID_CATATAN`);
 
 --
--- Indeks untuk tabel `jabatan`
---
-ALTER TABLE `jabatan`
-  ADD PRIMARY KEY (`ID_JABATAN`);
-
---
--- Indeks untuk tabel `kandang`
---
-ALTER TABLE `kandang`
-  ADD PRIMARY KEY (`ID_KANDANG`);
-
---
--- Indeks untuk tabel `pakan`
---
-ALTER TABLE `pakan`
-  ADD PRIMARY KEY (`KODE_PAKAN`);
-
---
--- Indeks untuk tabel `panen`
---
-ALTER TABLE `panen`
-  ADD PRIMARY KEY (`ID_PANEN`),
-  ADD UNIQUE KEY `PANEN_PK` (`TANGGAL_PANEN`,`ID_PANEN`);
-
---
--- Indeks untuk tabel `pegawai`
---
-ALTER TABLE `pegawai`
-  ADD PRIMARY KEY (`ID_PEGAWAI`),
-  ADD KEY `FK_PEGAWAI_MEMILIKI__JABATAN` (`ID_JABATAN`);
-
---
--- Indeks untuk tabel `pencatatan_pakan_masuk`
---
-ALTER TABLE `pencatatan_pakan_masuk`
-  ADD PRIMARY KEY (`ID_PPM`),
-  ADD KEY `FK_PENCATAT_DETIL_PPM_PAKAN` (`KODE_PAKAN`);
-
---
--- Indeks untuk tabel `periode_ternak`
---
-ALTER TABLE `periode_ternak`
-  ADD PRIMARY KEY (`ID_PERIODE`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `jabatan`
---
-ALTER TABLE `jabatan`
-  MODIFY `ID_JABATAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `kandang`
---
-ALTER TABLE `kandang`
-  MODIFY `ID_KANDANG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT untuk tabel `pegawai`
---
-ALTER TABLE `pegawai`
-  MODIFY `ID_PEGAWAI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `pencatatan_pakan_masuk`
---
-ALTER TABLE `pencatatan_pakan_masuk`
-  MODIFY `ID_PPM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT untuk tabel `periode_ternak`
---
-ALTER TABLE `periode_ternak`
-  MODIFY `ID_PERIODE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
---
-
---
--- Ketidakleluasaan untuk tabel `catatan_harian`
+-- AUTO_INCREMENT for table `catatan_harian`
 --
 ALTER TABLE `catatan_harian`
-  ADD CONSTRAINT `FK_CATATAN__DILAKUKAN_KANDANG` FOREIGN KEY (`ID_KANDANG`) REFERENCES `kandang` (`ID_KANDANG`),
-  ADD CONSTRAINT `FK_CATATAN__MEMILIKI_PERIODE_` FOREIGN KEY (`ID_PERIODE`) REFERENCES `periode_ternak` (`ID_PERIODE`),
-  ADD CONSTRAINT `FK_CATATAN__MENGELOLA_PEGAWAI` FOREIGN KEY (`ID_PEGAWAI`) REFERENCES `pegawai` (`ID_PEGAWAI`),
-  ADD CONSTRAINT `FK_CATATAN__MENGHASIL_PANEN` FOREIGN KEY (`ID_PANEN`) REFERENCES `panen` (`ID_PANEN`),
-  ADD CONSTRAINT `FK_CATATAN__PAKAN_HAR_PAKAN` FOREIGN KEY (`KODE_PAKAN`) REFERENCES `pakan` (`KODE_PAKAN`);
-
---
--- Ketidakleluasaan untuk tabel `pegawai`
---
-ALTER TABLE `pegawai`
-  ADD CONSTRAINT `FK_PEGAWAI_MEMILIKI__JABATAN` FOREIGN KEY (`ID_JABATAN`) REFERENCES `jabatan` (`ID_JABATAN`);
-
---
--- Ketidakleluasaan untuk tabel `pencatatan_pakan_masuk`
---
-ALTER TABLE `pencatatan_pakan_masuk`
-  ADD CONSTRAINT `FK_PENCATAT_DETIL_PPM_PAKAN` FOREIGN KEY (`KODE_PAKAN`) REFERENCES `pakan` (`KODE_PAKAN`);
+  MODIFY `ID_CATATAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
