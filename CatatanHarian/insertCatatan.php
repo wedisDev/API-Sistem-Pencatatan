@@ -50,22 +50,26 @@
                         '$umur_ayam', 
                         '$jumlah_pakan'
                     ) ";
+
         
         $result = mysqli_query($con, $insert);
         $response = array();
 
         if ($result) {
+            $update = "UPDATE pakan SET STOK_PAKAN=(`STOK_PAKAN`-'".(int)$jumlah_pakan."') WHERE KODE_PAKAN='".$kode_pakan."'";
+            $result = mysqli_query($con, $update);
+            if ($result) {}
             array_push($response, array(
-                'status' => '1'
+                'status' => "0".mysqli_error($con)
             ));
         }else {
             array_push($response, array(
-                'status' => '0'
+                'status' => '0'.mysqli_error($con)
             ));
         }
     }else {
         array_push($response, array(
-            'status' => '0'
+            'status' => '0'.mysqli_error($con)
         ));
     }
 
